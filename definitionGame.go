@@ -11,19 +11,18 @@ import (
 
 var (
 	// ErrNameNotProvided is thrown when a name is not provided
-	ErrNameNotProvided = errors.New("You done messed up.")
+	ErrNameNotProvided = errors.New("you done messed up, son")
 )
 
 // Handler for lambda
 func Handler(request alexa.Request) (alexa.Response, error) {
 
-	// The array of words that we'll be using for the game.
-	words := [5]string{"parcel", "calculator", "trail", "gold", "push"}
-
 	// stdout and stderr are sent to AWS CloudWatch Logs
 	log.Printf("Processing Lambda request \n")
 
-	randomWord := words[rand.Intn(5)]
+	wordNumber := rand.Intn(5)
+	randomWord := words[wordNumber]
+	log.Printf("The random number is %d\n", wordNumber)
 	log.Printf("The random word is %s\n", randomWord)
 
 	// If no name is provided in the HTTP request body, throw an error
