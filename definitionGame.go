@@ -11,7 +11,7 @@ import (
 
 var (
 	// ErrNameNotProvided is thrown when a name is not provided
-	ErrNameNotProvided = errors.New("no name was provided in the HTTP body")
+	ErrNameNotProvided = errors.New("You done messed up.")
 )
 
 // Handler for lambda
