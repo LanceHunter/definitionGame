@@ -1,4 +1,4 @@
-package definitionGame_test
+package main_test
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ func TestDefinitionGame(*testing.T) {
 	if testing.Short() {
 		fmt.Println("Testing in short mode.")
 	}
-	fmt.Println("This is the test.")
+	fmt.Println("This is the test. At least, it will be.")
 }
 
 func BenchmarkGame(*testing.B) {
