@@ -14,11 +14,20 @@ var (
 	ErrNameNotProvided = errors.New("you done messed up, son")
 )
 
-// Handler for lambda
-func Handler(request alexa.Request) (alexa.Response, error) {
+// DispatchIntents dispatches each intent to the right handler
+func DispatchIntents(request alexa.Request) (alexa.Response, error) {
+	var response alexa.Response
+	var err error
+	switch request.Body.Intent.Name {
+	case "hello":
+		response, err = handleHello(request)
+	default:
+		response = alexa.NewSimpleResponse("Test", "You're in a weird place right now, dude.")
+	}
+	return response, err
+}
 
-	// stdout and stderr are sent to AWS CloudWatch Logs
-	log.Printf("Processing Lambda request \n")
+func handleHello(request alexa.Request) (alexa.Response, error) {
 
 	wordNumber := rand.Intn(5)
 	randomWord := words[wordNumber]
@@ -37,6 +46,14 @@ func Handler(request alexa.Request) (alexa.Response, error) {
 
 	return alexa.NewSimpleResponse("Help for Hello", "To receive a greeting, ask hello to say hello"), nil
 
+}
+
+// Handler for lambda
+func Handler(request alexa.Request) (alexa.Response, error) {
+	// stdout and stderr are sent to AWS CloudWatch Logs
+	log.Printf("Processing Lambda request \n")
+
+	return DispatchIntents(request)
 }
 
 // Main function
