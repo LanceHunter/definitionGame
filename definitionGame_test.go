@@ -103,6 +103,9 @@ func TestHandler(t *testing.T) {
 	defer jsonFile1.Close()
 	defer jsonFile2.Close()
 
+	response1 := alexa.NewSimpleResponse("You did it!", "The test is working.")
+	response2 := alexa.NewSimpleResponse("Error", "There was an error with this request.")
+
 	tests := []struct {
 		request alexa.Request
 		expect  alexa.Response
@@ -112,15 +115,15 @@ func TestHandler(t *testing.T) {
 			// Test that the handler responds with the correct response
 			// when a valid name is provided in the HTTP body
 			request: req1,
-			//			expect:  "Hello Lance", // <-- Make this real
-			err: nil,
+			expect:  response1,
+			err:     nil,
 		},
 		{
 			// Test that the handler responds ErrNameNotProvided
 			// when no name is provided in the HTTP body
 			request: req2,
-			//			expect:  "",
-			err: main.ErrNameNotProvided,
+			expect:  response2,
+			err:     main.ErrNameNotProvided,
 		},
 	}
 
