@@ -85,14 +85,23 @@ func TestHandler(t *testing.T) {
 	var req2 alexa.Request
 
 	// Importing the first JSON file
-	jsonFile, err := os.Open("testJSON/test1.json")
+	jsonFile1, err := os.Open("testJSON/test1.json")
 	if err != nil {
 		log.Fatal(err)
 	}
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue, _ := ioutil.ReadAll(jsonFile1)
 	json.Unmarshal([]byte(byteValue), &req1)
 
-	defer jsonFile.Close()
+	// Importing the second JSON file
+	jsonFile2, err := os.Open("testJSON/test2.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	byteValue, _ = ioutil.ReadAll(jsonFile2)
+	json.Unmarshal([]byte(byteValue), &req2)
+
+	defer jsonFile1.Close()
+	defer jsonFile2.Close()
 
 	tests := []struct {
 		request alexa.Request
