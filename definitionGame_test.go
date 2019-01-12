@@ -103,6 +103,7 @@ func TestHandler(t *testing.T) {
 	defer jsonFile1.Close()
 	defer jsonFile2.Close()
 
+	// Build the simple responses that the tests should send back.
 	response1 := alexa.NewSimpleResponse("You did it!", "The test is working.")
 	response2 := alexa.NewSimpleResponse("Error", "There was an error with this request.")
 
