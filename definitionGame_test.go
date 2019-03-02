@@ -78,7 +78,7 @@ func TestHandler(t *testing.T) {
 	// 	Body    ReqBody
 	// 	Context Context
 	// }
-	// // End of the the structs for Alexa request.
+	// // End of the structs for Alexa request.
 
 	// Setting up the variable to hold first test result.
 	var req1 alexa.Request

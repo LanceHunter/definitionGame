@@ -15,4 +15,4 @@ This game picks a entry from an array of words, calls the Oxford English Diction
 
 ## Dumb notes
 - This is a spare time/de-stressing project. Hopefully it fulfills that function.
-- I'm coding in Atom and using go-plus. It automatically converts my default spaces into tabs and I strongly disagree with that decision.
+- Trying to do a lot of testing with this as well, because more testing is always good.
