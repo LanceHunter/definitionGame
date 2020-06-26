@@ -76,7 +76,9 @@ func Oxford(word string) {
 	}
 
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://od-api.oxforddictionaries.com/api/v2/entries/en-us/"+word, nil)
+	reqURL := "https://od-api.oxforddictionaries.com//api/v2/entries/en-us/" + word
+	log.Println("Request URL - ", reqURL)
+	req, err := http.NewRequest("GET", reqURL, nil)
 	req.Header.Add("app_id", appID)
 	req.Header.Add("app_key", apiKey)
 
@@ -101,6 +103,8 @@ func Oxford(word string) {
 
 // Main function
 func main() {
-	Oxford("test")
+	wordNumber := rand.Intn(5)
+	randomWord := words[wordNumber]
+	Oxford(randomWord)
 	lambda.Start(Handler)
 }
