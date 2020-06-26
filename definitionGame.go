@@ -2,8 +2,10 @@ package main
 
 import (
 	"errors"
+	"io/ioutil"
 	"log"
 	"math/rand"
+	"net/http"
 
 	alexa "github.com/arienmalec/alexa-go"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -56,7 +58,27 @@ func Handler(request alexa.Request) (alexa.Response, error) {
 	return DispatchIntents(request)
 }
 
+// Function that is testing the call to the Oxford API.
+func Oxford(word string) {
+	log.Printf("The word is %s \n", word)
+	resp, err := http.Get("https://google.com")
+	if err != nil {
+		log.Fatalln("Error with GET call - ", err)
+	}
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln("Error reading response body - ", err)
+	}
+
+	log.Println(string(body))
+
+}
+
 // Main function
 func main() {
+	Oxford("test")
 	lambda.Start(Handler)
 }
