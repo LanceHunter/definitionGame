@@ -7,7 +7,42 @@ import (
 	"os"
 )
 
-// Oxford that is testing the call to the Oxford API.
+// OxfordReply is the struct holding the data from the Oxford API's reply
+type OxfordReply struct {
+	Metadata OxfordMetadata `json:"metadata"`
+	Results  []Results      `json:"results"`
+}
+
+// OxfordMetadata holds the metadata information from the API reply.
+type OxfordMetadata struct {
+	Operation string `json:"operation"`
+	Provider  string `json:"provider"`
+	Schema    string `json:"schema"`
+}
+
+// Results hold the result information from the API call.
+type Results struct {
+	ID             string           `json:"id"`
+	Language       string           `json:"language"`
+	Type           string           `json:"type"`
+	Word           string           `json:"word"`
+	LexicalEntries []LexicalEntry   `json:"lexicalEntries"`
+	Pronunciations []Pronunciations `json:"pronunciations"`
+}
+
+// LexicalEntry is the struct with the lexical information from the reply.
+type LexicalEntry struct {
+	Word string
+}
+
+// Pronunciations is the struct with the pronunciation information from the
+// reply.
+type Pronunciations struct {
+}
+
+// Oxford is the function that is passed the randomly-selected word and calls
+// the dictionary API to get the definition, putting it into the definition
+// struct.
 func Oxford(word string) {
 	log.Printf("The word is %s \n", word)
 

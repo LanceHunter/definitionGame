@@ -10,3 +10,6 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# Keep the sample reply json reference file out of the repo.
+sample-reply.json
