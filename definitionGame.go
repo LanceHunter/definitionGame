@@ -61,6 +61,7 @@ func Handler(request alexa.Request) (alexa.Response, error) {
 func main() {
 	wordNumber := rand.Intn(5)
 	randomWord := words[wordNumber]
-	Oxford(randomWord)
+	wordDefinition := Oxford(randomWord)
+	log.Println("Definition - ", wordDefinition)
 	lambda.Start(Handler)
 }
