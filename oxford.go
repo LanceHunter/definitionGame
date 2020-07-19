@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-// OxfordReply is the struct holding the data from the Oxford API's reply
+// OxfordReply is the top-level struct holding the data from the Oxford API's reply
 type OxfordReply struct {
 	Metadata OxfordMetadata `json:"metadata"`
 	Results  []Result       `json:"results"`
